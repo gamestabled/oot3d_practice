@@ -1,0 +1,43 @@
+Slot Number     Item Slot           Item
+-------------------------------------------
+0               Deku Stick          Deku Stick
+1               Deku Nut            Deku Nut
+2               Bombs               Bombs
+3               Fairy Bow           Fairy Bow
+4               Fire Arrow          Fire Arrow
+5               Din's Fire          Din's Fire
+6               Fairy Slingshot     Fairy Slingshot
+7               Ocarinas            Fairy Ocarina
+8               Bombchus            Ocarina of Time
+9               Hookshot/Longshot   Bombchus
+10              Ice Arrow           Hookshot
+11              Farore's Wind       Longshot
+12              Boomerang           Ice Arrow
+13              Lens of Truth       Farore's Wind
+14              Magic Beans         Boomerang
+15              Megaton Hammer      Lens of Truth
+16              Light Arrow         Magic Beans
+17              Nayru's Love        Megaton Hammer
+18              Bottle #1           Light Arrow
+19              Bottle #2           Nayru's Love
+20              Bottle #3           Empty Bottle
+21              Bottle #4           Red Potion
+22              Adult Trade         Green Potion
+23              Child Trade         Blue Potion
+24              Iron Boots          Bottled Fairy
+25              Hover Boots         Bottled Fish
+26              Deku Stick Ammo     Lonlon Milk (full)
+27              Deku Nut Ammo       Bottled Letter
+28              Bomb Ammo           Blue Fire
+29              Arrow Ammo          Bottled Bug
+30              Fire Arrow Ammo     Big Poe
+31              Din's Fire Ammo     Lonlon Milk (half)
+32              Deku Seed Ammo      Poe
+33              Ocarina Ammo        Weird Egg
+34              Bombchu Ammo        Cucco
+35              Hookshot Ammo       Zelda's Letter
+36              Ice Arrow Ammo      Keaton Mask
+37              Farore's Wind Ammo  Skull Mask
+38              Boomerang Ammo      Spooky Mask
+39              Lens of Truth Ammo  Bunny Hood
+40              Magic Beans Ammo    Goron Mask
