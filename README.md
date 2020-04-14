@@ -1,5 +1,5 @@
 # oot3d_practice
-This is a project to make some useful practice tools for oot3d. I decided to work on it because I wanted to use these tools. It is greatly inspired by glank's oot64 practice rom.
+This is a project to make some useful practice tools for oot3d. I decided to work on it because I wanted to use these tools. It is greatly inspired by glank's oot64 practice rom. Also most of the code in here, the patch generation, and reverse engineering work here is originally due to n3rdswithgame (I stole the code and didn't know about forks at the time <3)
 
 ------------------------------------------------------------------------
 
