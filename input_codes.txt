@@ -7,7 +7,7 @@ Inventory Editor:
 Notes: After initializing, use d-up and d-right to set rupee count to the desired inventory slot to modify. After choosing the slot, use d-up and d-right to set rupee count to the desired item to place in the slot, or press d-left to set clear the slot. Hold L and R to cancel editing.
 
 Actor Collision:
--Toggle: Hold L and press d-down
+-Toggle: Start + Select
 
 Store Position:
 -Store: Hold L and press d-left
@@ -18,8 +18,8 @@ ISG (Disabled in current commit):
 
 Frame Advance:
 -Pause/Resume: Press d-up
--Advance Frame: Press d-left
+-Advance Frame: Press d-down
 
-Entrance Modifier:
+Entrance Modifier (Disabled in current commit):
 -Set Entrance: Hold R and press d-right
 Notes: The set entrance is determined by stick, nuts, and bombs counts.

@@ -139,7 +139,7 @@ all: $(BUILD)
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
-	@C:\Users\Chandler\AppData\Local\Programs\Python\Python37-32\python patch.py $(OUTPUT).elf
+	@python3 patch.py $(OUTPUT).elf
 
 #---------------------------------------------------------------------------------
 clean:

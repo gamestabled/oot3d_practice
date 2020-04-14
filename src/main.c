@@ -38,15 +38,15 @@ void restore_pos() {
 }
 
 void advance_main() {
-    
+
     scan_inputs();
 
-    /* Inventory edit code begins here
-    ---------------------------*/
-    //Hold R and press d-down to initialize
-    //Use d-up to increase by one
-    //Use d-right to increase by ten
-    //Use d-left to write null
+    // /* Inventory edit code begins here
+    // ---------------------------*/
+    // //Hold R and press d-down to initialize
+    // //Use d-up to increase by one
+    // //Use d-right to increase by ten
+    // //Use d-left to write null
     if (inputs.pressed.d_down && inputs.cur.r) {
         switch(item_set_mode_state) {
             case 0 : //not init
@@ -66,7 +66,7 @@ void advance_main() {
     }
     if (inputs.pressed.d_up && item_set_mode_state) {
         z3d_file.rupee_count++;
-    }        
+    }
     if (inputs.pressed.d_right && item_set_mode_state) {
         z3d_file.rupee_count += 10;
     }
@@ -74,12 +74,12 @@ void advance_main() {
     if (inputs.pressed.d_left && (item_set_mode_state == 2)) {
         item_set_mode_state = 0;
         z3d_file.item_slot_item[item_slot_chosen] = 0xff;
-        
+
         for (int i = 0; i < 0x30; ++i) {
             if (*(z3d_file.inventory_grid_data_child + i) == item_slot_chosen)
                 *(z3d_file.inventory_grid_data_child + i) = 0xff;
         }
-        
+
         return;
     }
     //panic button
@@ -95,18 +95,18 @@ void advance_main() {
     if(inputs.pressed.d_left && inputs.cur.l) {
         store_pos();
     }
-    
+
     //Restores Link's position
     if(inputs.pressed.d_right) {
         restore_pos();
     }
-    
+
     /* Actor collision code */
     //Toggles actor collision viewer
-    if(inputs.pressed.d_down && inputs.cur.l) {
+    if((inputs.cur.sel && inputs.pressed.strt) || (inputs.pressed.sel && inputs.cur.strt)) {
         actor_collision = 1 - actor_collision;
     }
-    
+
     /* ISG code
      ---------------------------*/
     //Gives ISG
@@ -114,28 +114,28 @@ void advance_main() {
     //if(inputs.pressed.d_down) {
         //link.isg = 0x01;
     //}
-    
-    /* Entrance set code. Early on in development
-    ---------------------------*/
-    //Right now sets entrance based on sticks/nuts/bombs amount
+    //
+    // /* Entrance set code. Early on in development
+    // ---------------------------*/
+    // //Right now sets entrance based on sticks/nuts/bombs amount
     if(inputs.pressed.d_right && inputs.cur.r) {
         entrance = (z3d_file.item_slot_amount[0] * 0x0100);
         entrance += (z3d_file.item_slot_amount[1] * 0x0010);
         entrance += (z3d_file.item_slot_amount[2] * 0x0001);
-        
+    
         //For the future when we have fadeout
         //memcpy(&z3d_file, z3d_file.item_slot_amount, 2);
-        entrance_set = 1;
-    }   
-    
+        //turned off for now
+        //entrance_set = 1;
+    }
+
     /* Age swap code
-    Crashes the game, dont use it
+    still does not work, idk
     ---------------------------*/
-    //if(inputs.pressed.d_right && inputs.cur.l && inputs.cur.r){
-        //age = 1 - z3d_file.link_age;
-        //age_set = 1;
-    //}
-    
+    // if(inputs.pressed.d_right && inputs.cur.l && inputs.cur.r){
+    //     globalContext.pending_age = 1 - z3d_file.link_age;
+    // }
+
     /*Frame Advance begins here
     Stolen from n3rdswithgame <3
     ---------------------------*/
@@ -146,10 +146,10 @@ void advance_main() {
     //up to enable, left to advance
     toggle_advance();
     scan_inputs();
-    
-    
+
+
     if(advance_ctx.advance_state == STEP) {
-        if(inputs.cur.d_left && !inputs.cur.l) {
+        if(inputs.cur.d_down) {
             advance_ctx.advance_state = LATCHED;
         } else {
             advance_ctx.advance_state = PAUSED;
@@ -160,29 +160,23 @@ void advance_main() {
     while(advance_ctx.advance_state == PAUSED || advance_ctx.advance_state == LATCHED) {
         scan_inputs();
         toggle_advance();
-        if(advance_ctx.advance_state == LATCHED && !inputs.cur.d_left) {
+        if(advance_ctx.advance_state == LATCHED && !inputs.cur.d_down) {
             advance_ctx.advance_state = PAUSED;
         }
-        if(advance_ctx.advance_state == PAUSED && inputs.cur.d_left) {
+        if(advance_ctx.advance_state == PAUSED && inputs.cur.d_down) {
             advance_ctx.advance_state = STEP;
         }
         svcSleepThread(16e6);
     }
-    
+
 }
 
 void area_load_main() {
-    
+
     if (entrance_set) {
         z3d_file.entrance_index = entrance;
     }
-    entrance_set = 0; 
-    //if (age_set){
-        //z3d_file.link_age = age;
-    //}
-    //age_set = 0;
-    //z3d_file.link_age = age;
-    //z3d_file.entrance_index = 0x00000000;
+    entrance_set = 0;
 }
 
 //TODO: change d_down_latched to d_up_latched or whatever final button code is
@@ -194,7 +188,7 @@ void toggle_advance() {
     } else if(inputs.pressed.d_up && advance_ctx.advance_state != NORMAL && !advance_ctx.d_down_latched) {
         advance_ctx.advance_state = NORMAL;
         advance_ctx.d_down_latched = 1;
-    } else if (advance_ctx.advance_state == NORMAL && inputs.pressed.d_left && !inputs.cur.l){
+    } else if (advance_ctx.advance_state == NORMAL && inputs.pressed.d_down){
         advance_ctx.advance_state = LATCHED;
     } else if(!inputs.pressed.d_up) {
         advance_ctx.d_down_latched = 0;
